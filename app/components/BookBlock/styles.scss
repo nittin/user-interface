@@ -1,0 +1,129 @@
+@import '../../styles/color-global.scss';
+.book-block{
+    width: 100%;
+    margin: 20px 0px 20px 0px;
+    background-color: $white-color;
+    a{
+        color:#000000;
+    }
+    &__header{
+        height: 40px;
+        width: 100%;
+        border-bottom: 1px solid #e6e6e6;
+    }
+    .price{
+        color: #f7941e;
+        font-size: 16px;
+    }
+    &__container{
+            width: 100%;
+            padding: 20px;
+            .one-row-slider{
+                .slick-list{
+                    height: 300px;
+                    padding-left: 35px;
+                }
+            }
+            &__slider{
+                &__info{
+                    font-size: 14px;
+                    text-overflow: ellipsis;  
+                    overflow: hidden;
+                    max-width: 250px;
+                    word-wrap: break-word;
+                }
+                .book-item{
+                    padding: 10px;
+                }
+                .book-item:hover{
+                    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+                    cursor: pointer;
+                }
+            }
+            &__box{
+                position: relative;
+                width: 165px;
+                padding: 10px;
+                &:hover{
+                    cursor: pointer;
+                    padding: 5px;
+                }
+                .badge-number{
+                    top: 0;
+                    left: 0;
+                    width: 40px;
+                    height: 40px;
+                    position: absolute;
+                    font-size: 12px;
+                    text-align: center;
+                    align-self: center;
+                    padding: 0px 8px;
+                    border: 1px solid #f7941e;
+                    color: #f7941e;
+                    background-color: #fff;
+                    border-radius: 30px;
+                }
+                    &__image-carousel{
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: auto;
+                        z-index: 10;
+                     }
+                    &__info{
+                        max-width: 165px;
+                        font-size: 14px;
+                        margin: 8px 0;
+                        text-overflow: ellipsis;  
+                        overflow: hidden;
+                    }
+                    &__price{
+                        color: #ffa62d;
+                    }
+                    .img-container{
+                        position: relative;
+                        .process{
+                            position: absolute;
+                            right:50%;
+                            top:50%;
+                        }
+                    }
+            }
+            &__slider{
+                width: 100%;
+                overflow: hidden;
+                padding: 0 20px;
+                margin-left: 20px;
+                z-index: 1;
+                &--box{
+                    width: 130px;
+                    height: 200px;
+                    position: relative;
+                    .badge-number{
+                        top: 0;
+                        left: 0;
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        font-size: 12px;
+                        text-align: center;
+                        align-self: center;
+                        padding: 0px 8px;
+                        border: 1px solid #f7941e;
+                        color: #f7941e;
+                        background-color: #fff;
+                        border-radius: 30px;
+                    }
+                }
+                &__image-carousel{
+                    width: 100%;
+                    height: auto;
+                 }
+                 
+            }
+            &__show-all{
+                color: #f7941e;
+            }
+    }
+    
+}

@@ -1,0 +1,20 @@
+.footer{
+    background-color: #555555;
+    height: 100px;
+    width: 100%;
+    p{
+        color: white;
+    }
+    .text-email{
+        background-color: white;
+        border-radius: 3px;
+        border: none;
+    }
+    .text-email:hover{
+        border: none;
+        outline: none;
+    }
+    .btn{
+        padding: 0px 50px;
+    }
+}

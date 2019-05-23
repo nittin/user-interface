@@ -1,0 +1,115 @@
+@import '../../styles/color-global.scss';
+body{
+    background-color: $background-app;
+    font-family: 'Roboto', Helvetica, sans-serif
+}
+button:focus{
+    outline:0;
+}
+::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #cccccc;
+}
+a:hover{
+    text-decoration: none;
+}
+.app{
+   
+    &__banner{
+        width: 100%;
+        height: 100px;
+        &--image{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &__body{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+    .img-fade{
+        width: 300px;
+        height: 423px;
+        margin-right: 20px;
+        overflow: hidden; 
+    }   
+    .img-left-slide{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: all 0.5s ease;
+        background-image: url('images/left-slide.jpg');
+        a {
+            display: none;
+            font-size: 35px;
+            color: #ffffff !important;
+            font-family: sans-serif;
+            text-align: center;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 50px;
+        }
+        
+    }
+    .img-left-slide:hover{
+        transform: scale(1.2);
+    }
+    .img-fade:hover .img-left-slide:before, .img-fade:focus .img-left-slide:before {
+        display: block;
+    }
+    
+    .img-fade:hover a, .img-fade:focus a {
+        display: block;
+    }
+    
+    .img-left-slide:before {
+        content: "";
+        display: none;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(52,73,94,0.75);
+    }
+    .carousel{
+        width: 1000px;
+    }
+    .carousel-indicators li{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+    .slick-prev:before, .slick-next:before { font-family: "slick"; font-size: 40px; line-height: 1; color: red; opacity: 0.75; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }   
+
+            .slick-prev:before { content: "‹"; }
+            [dir="rtl"] .slick-prev:before { content: "›"; }
+
+            [dir="rtl"] .slick-next { left: -10px; top: 70px; right: auto; }
+            .slick-next:before { content: "›"; }
+            [dir="rtl"] .slick-next:before { content: "‹"; }
+}

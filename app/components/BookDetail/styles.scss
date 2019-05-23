@@ -1,0 +1,32 @@
+.book-detail{
+    background-color: #ffffff;
+    padding: 50px;
+    color: #3d474e;
+    &__info-container{
+        .price{
+            color: #ffa62d;
+            font-weight: 500;
+        }
+        .separator{
+            width: 100%;
+            border: 0.5px solid #c1c1c1;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .action{
+            p{
+                font-size: 13px;
+            }
+            .btn{
+                background-color: #f7941e;
+                color: #ffffff;
+                font-size: 16px;
+                padding:10px 30px;
+                margin-top: -30px;
+            }
+            .btn:hover{
+                background-color: #d1031c;
+            }
+        }
+    }
+}

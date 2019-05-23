@@ -1,0 +1,29 @@
+.order-address{
+    width: 100%;
+    text-align: left;
+}
+.quantity{
+    &__number{
+        width: 40px!important;
+        text-align: center;
+    }
+    &__add-button{
+        min-width:30px!important;
+        background-color: #000000!important;
+        &:active{
+            color: #3f51b5;
+            background-color: #000000;
+        }
+        &:hover{
+            background-color: #000000;
+        }
+        &:disabled{
+            background-color: #cccccc!important;
+
+        }
+    }
+    .remove, .add{
+        font-size: 16px;
+    }
+
+}

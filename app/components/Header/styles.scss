@@ -1,0 +1,55 @@
+@import '../../styles/color-global.scss';
+.header{
+   width: 100%;
+   height: 100px;
+   position: relative;
+   background: rgba(0, 0, 0, 0.8);
+   &__link{
+    position: absolute;
+    color: #ffffff;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+   }
+}
+.header-main{
+    button :focus{
+        outline: none !important;
+    }
+    &__search{
+        border: 1px solid #f7941e;
+        width: 80%;
+        font-size: 14px;
+        background-color: #ffffff;
+        .input-search{
+            width: 100%;
+            outline:none;
+            padding: 5px;
+        }
+        .fiter-key{
+            width: 200px;
+            font-size: 10px!important;
+            margin-top: 5px;
+        }
+    }
+    .link-cart{
+        color: #333333;
+    }
+    .badge-number{
+        font-size: 12px;
+        position: relative;
+        padding: 0px 8px;
+        text-align: center;
+        border: 1px solid #f7941e;
+        color: #f7941e;
+        background-color: #fff;
+        right: 8px;
+        top: -10px;
+        border-radius: 30px;
+    }
+    .shop-bag{
+        font-size: 12px;
+        align-items: center;
+    }
+}
