@@ -1,7 +1,7 @@
 @import '../../styles/color-global.scss';
 body{
     background-color: $background-app;
-    font-family: 'Roboto', Helvetica, sans-serif
+    font-family: 'Roboto', Helvetica, sans-serif;
 }
 button:focus{
     outline:0;
@@ -33,7 +33,9 @@ a:hover{
     text-decoration: none;
 }
 .app{
-   
+    .dropdown-item:active, .dropdown-item:hover {
+        color: #f7941e!important;
+       }
     &__banner{
         width: 100%;
         height: 100px;

@@ -24,7 +24,13 @@
     }
 }
 .order{
-    width: 400px;
+    a{
+        color: #ffffff;
+    }
+    a:hover{
+        color: #ffffff;
+    }
+    min-width: 400px;
     margin-left: 20px;
     &__title{
         border-bottom: 1px solid #bdbdbd;

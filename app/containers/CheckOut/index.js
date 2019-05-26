@@ -4,36 +4,33 @@
  *
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectCheckOut from './selectors';
+import { makeSelector } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
+import CheckOutStep from './CheckOutStep';
+import * as actions from './actions';
 /* eslint-disable react/prefer-stateless-function */
-export class CheckOut extends React.Component {
-  render() {
-    return <div />;
-  }
-}
-
-CheckOut.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = createStructuredSelector({
-  checkOut: makeSelectCheckOut(),
+  loading: makeSelector('loading'),
+  listCity: makeSelector('listCity'),
+  listDistrict: makeSelector('listDistrict'),
+  listWard: makeSelector('listWard'),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    getListCity: () => dispatch(actions.getListCity()),
+    getListDistrict: () => dispatch(actions.getListDistrict()),
+    getListWard: () => dispatch(actions.getListWard()),
+    onChangeInput: (name, value) => dispatch(actions.onChangeInput(name, value)),
   };
 }
 
@@ -49,4 +46,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(CheckOut);
+)(CheckOutStep);

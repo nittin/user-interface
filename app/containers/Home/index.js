@@ -24,6 +24,10 @@ import { makeSelector } from './selectors';
 export class Home extends React.Component {
   componentDidMount() {
     this.props.getNewBook();
+    this.props.getListCurriculum();
+    this.props.getListLiterary();
+    this.props.getListNewPublished();
+    this.props.getListNovel();
   }
 
   render() {
@@ -31,10 +35,10 @@ export class Home extends React.Component {
       <div>
         <Advertisement />
         <BookBlock titleBlock="SÁCH MỚI VỀ" {...this.props} />
-        <LeftFixBlock titleBlock="VĂN HỌC - NGHỆ THUẬT" />
-        <RightFixBlock titleBlock="TRUYỆN - TIỂU THUYẾT" />
-        <LeftFixBlock titleBlock="SÁCH MỚI XUẤT BẢN" />
-        <RightFixBlock titleBlock="GIÁO TRÌNH" />
+        <LeftFixBlock titleBlock="VĂN HỌC - NGHỆ THUẬT" data={this.props.listLiterary} />
+        <RightFixBlock titleBlock="TÂM LÝ" data={this.props.listNovel} />
+        <LeftFixBlock titleBlock="SÁCH MỚI XUẤT BẢN" data={this.props.listNewPublished} />
+        <RightFixBlock titleBlock="GIÁO TRÌNH" data={this.props.listCurriculum} />
       </div>
     );
   }
@@ -42,17 +46,29 @@ export class Home extends React.Component {
 
 Home.propTypes = {
   getNewBook: PropTypes.func,
+  getListCurriculum: PropTypes.func,
+  getListLiterary: PropTypes.func,
+  getListNovel: PropTypes.func,
+  getListNewPublished: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   newBook: makeSelector('newBook'),
   loading: makeSelector('loading'),
+  listNovel: makeSelector('listNovel'),
+  listNewPublished: makeSelector('listNewPublished'),
+  listCurriculum: makeSelector('listCurriculum'),
+  listLiterary: makeSelector('listLiterary'),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     getNewBook: () => dispatch(actions.getNewBook()),
+    getListNewPublished: () => dispatch(actions.getListNewPublished()),
+    getListCurriculum: () => dispatch(actions.getListCurriculum()),
+    getListLiterary: () => dispatch(actions.getListLiterary()),
+    getListNovel: () => dispatch(actions.getListNovel()),
   };
 }
 

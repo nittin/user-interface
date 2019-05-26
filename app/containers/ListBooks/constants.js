@@ -25,3 +25,4 @@ export const API_LOAD_FAIL = 'app/ListBooks/API_LOAD_FAIL';
 // onChange
 export const CHANGE_SORT = 'app/ListBooks/CHANGE_SORT';
 export const CHANGE_PAGE = 'app/ListBooks/CHANGE_PAGE';
+export const CHANGE_SEARCH_KEY = 'app/ListBooks/CHANGE_SEARCH_KEY';

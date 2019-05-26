@@ -35,10 +35,12 @@ export function* getListPublisher() {
 export function* getListBookByName() {
   const sortType = yield select(makeSelector('sortType'));
   const sortField = yield select(makeSelector('sortField'));
+  const searchKey = yield select(makeSelector('searchKey'));
   const page = yield select(makeSelector('page'));
 
-  const resource = 'book/get-all';
+  const resource = 'book';
   const params = {
+    bookName: searchKey,
     sortType,
     sortField,
     limitNumber: 5,
@@ -52,29 +54,60 @@ export function* getListBookByName() {
   }
 }
 export function* getListBookByCategory() {
+  const sortType = yield select(makeSelector('sortType'));
+  const sortField = yield select(makeSelector('sortField'));
+  const searchKey = yield select(makeSelector('searchKey'));
+  const page = yield select(makeSelector('page'));
   const resource = 'book/get-by-category';
   const params = {
-  }
+    categoryName: searchKey,
+    sortType,
+    sortField,
+    limitNumber: 5,
+    pageNumber: page,
+  };
   try {
-    const response = yield call(getApi, resource, {});
+    const response = yield call(getApi, resource, params);
     yield put(actions.getBookByCategorySuccess(response.data));
   } catch (e) {
     console.log(e);
   }
 }
 export function* getListBookByAuthor() {
+  const sortType = yield select(makeSelector('sortType'));
+  const sortField = yield select(makeSelector('sortField'));
+  const searchKey = yield select(makeSelector('searchKey'));
+  const page = yield select(makeSelector('page'));
   const resource = 'book/get-by-author';
+  const params = {
+    authorName: searchKey,
+    sortType,
+    sortField,
+    limitNumber: 5,
+    pageNumber: page,
+  };
   try {
-    const response = yield call(getApi, resource, {});
+    const response = yield call(getApi, resource, params);
     yield put(actions.getBookByAuthorSuccess(response.data));
   } catch (e) {
     console.log(e);
   }
 }
 export function* getListBookByPublisher() {
+  const sortType = yield select(makeSelector('sortType'));
+  const sortField = yield select(makeSelector('sortField'));
+  const searchKey = yield select(makeSelector('searchKey'));
+  const page = yield select(makeSelector('page'));
   const resource = 'book/get-by-publisher';
+  const params = {
+    publisher: searchKey,
+    sortType,
+    sortField,
+    limitNumber: 5,
+    pageNumber: page,
+  };
   try {
-    const response = yield call(getApi, resource, {});
+    const response = yield call(getApi, resource, params);
     yield put(actions.getBookByPublisherSuccess(response.data));
   } catch (e) {
     console.log(e);
@@ -85,6 +118,9 @@ export default function* listBooksSaga() {
   yield takeLatest(constants.GET_ALL_PUBLISHER, getListPublisher);
   yield takeLatest(constants.GET_ALL_AUTHOR, getListAuthor);
   yield takeLatest(constants.GET_BOOK_BY_NAME, getListBookByName);
+  yield takeLatest(constants.GET_BOOK_BY_AUTHOR, getListBookByAuthor);
+  yield takeLatest(constants.GET_BOOK_BY_CATEGORY, getListBookByCategory);
+  yield takeLatest(constants.GET_BOOK_BY_PUBLISHER, getListBookByPublisher);
 
   // See example in containers/HomePage/saga.js
 }

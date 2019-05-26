@@ -23,6 +23,7 @@ import { mapDispatchToProps } from './ListBooks';
 export const mapStateToProps = createStructuredSelector({
   loading: makeSelector('loading'),
   error: makeSelector('error'),
+  searchKey: makeSelector('searchKey'),
   listCategory: makeSelector('listCategory'),
   listAuthor: makeSelector('listAuthor'),
   listPublisher: makeSelector('listPublisher'),

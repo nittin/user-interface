@@ -13,7 +13,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import DialogContent from '@material-ui/core/DialogContent';
 import './styles.scss';
-import Login from '../CheckOutStep/Login';
+import LoginPage from 'containers/App/LoginPage';
 const styles = {
   container: {
     display: 'flex',
@@ -49,8 +49,10 @@ class HeaderMain extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-  }
+    this.props.history.push({
+      search: `${this.state.searchKey}`,
+    });
+  };
 
   handleClose = () => {
     this.setState({
@@ -74,8 +76,8 @@ class HeaderMain extends React.Component {
         label: 'Tác giả',
       },
       {
-        value: 'publishYear',
-        label: 'Năm xuất bản',
+        value: 'publisher',
+        label: 'Nhà xuất bản',
       },
     ];
     return (
@@ -112,8 +114,15 @@ class HeaderMain extends React.Component {
                     </MenuItem>
                   ))}
                 </TextField>
-                <button>
-                  <Search />
+                <button className="ml-2" type="submit">
+                  <Link
+                    to={{
+                      pathname: `/list-books/${this.state.search}`,
+                      search: `${this.state.searchKey}`,
+                    }}
+                  >
+                    <Search />
+                  </Link>
                 </button>
               </div>
             </form>
@@ -147,7 +156,7 @@ class HeaderMain extends React.Component {
               </div>
               <Typography className="check-out__tab-content">Hoặc</Typography>
               <div className="d-flex justify-content-center mb-5">
-                <Login />
+                <LoginPage />
               </div>
             </div>
           </DialogContent>

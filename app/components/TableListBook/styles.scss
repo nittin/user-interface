@@ -8,6 +8,16 @@
     &__container{
         width: 100%;
         background-color: #ffffff;
+        .no-data{
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        &--process{
+            margin: 20px;
+            margin-left: 50%;
+        }
         &--wrap{
             flex-wrap: wrap;
             margin: auto;
@@ -53,11 +63,9 @@
         flex-wrap: wrap;
         padding-bottom: 15px;
         li{
-            border: 1px solid #cccccc;
             height: 30px;
             width: 30px;
             text-align: center;
-            border-radius: 50%;
             line-height: 2; 
             a{
                 color: #939393;

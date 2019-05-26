@@ -15,8 +15,10 @@ class BookDetail extends React.Component {
   }
 
   handleSubmit = () => {
-    console.log(this.props.cookies);
-  }
+    const { cookies } = this.props;
+    cookies.set('books','fffff', { path: '/' });
+    console.log(cookies.get('books'));
+  };
 
   render() {
     const { bookDetail, loading } = this.props;
@@ -59,5 +61,7 @@ class BookDetail extends React.Component {
 }
 BookDetail.propTypes = {
   bookDetail: PropTypes.object,
+  loading: PropTypes.bool,
+  cookies: PropTypes.object,
 };
 export default BookDetail;

@@ -43,38 +43,6 @@ const style1 = {
 const suggestions = [
   { label: 'Afghanistan' },
   { label: 'Aland Islands' },
-  { label: 'Albania' },
-  { label: 'Algeria' },
-  { label: 'American Samoa' },
-  { label: 'Andorra' },
-  { label: 'Angola' },
-  { label: 'Anguilla' },
-  { label: 'Antarctica' },
-  { label: 'Antigua and Barbuda' },
-  { label: 'Argentina' },
-  { label: 'Armenia' },
-  { label: 'Aruba' },
-  { label: 'Australia' },
-  { label: 'Austria' },
-  { label: 'Azerbaijan' },
-  { label: 'Bahamas' },
-  { label: 'Bahrain' },
-  { label: 'Bangladesh' },
-  { label: 'Barbados' },
-  { label: 'Belarus' },
-  { label: 'Belgium' },
-  { label: 'Belize' },
-  { label: 'Benin' },
-  { label: 'Bermuda' },
-  { label: 'Bhutan' },
-  { label: 'Bolivia, Plurinational State of' },
-  { label: 'Bonaire, Sint Eustatius and Saba' },
-  { label: 'Bosnia and Herzegovina' },
-  { label: 'Botswana' },
-  { label: 'Bouvet Island' },
-  { label: 'Brazil' },
-  { label: 'British Indian Ocean Territory' },
-  { label: 'Brunei Darussalam' },
 ].map(suggestion => ({
   value: suggestion.label,
   label: suggestion.label,
@@ -95,6 +63,10 @@ class Login extends React.Component {
       address: null,
     };
   }
+  componentDidMount() {
+
+    console.log('hi');
+  }
 
   handleChangeOption = (name, selectedOption) => {
     this.setState({ [name]: selectedOption });
@@ -102,6 +74,7 @@ class Login extends React.Component {
 
   handleChangeText = name => event => {
     this.setState({ [name]: event.target.value });
+    this.props.onChangeInput(name, event.target.value);
   };
 
   handleChange = (event, value) => {
@@ -110,6 +83,12 @@ class Login extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    // this.props.handleNext();
+    this.props.login();
+    if(this.props.loginSuccess){
+      this.props.getUserInfo();
+    }
+    console.log('tao day ne');
     this.setState({
       isSubmit: true,
     });

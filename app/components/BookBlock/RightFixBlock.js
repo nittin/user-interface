@@ -36,263 +36,55 @@ class RightFixBlock extends React.Component {
       slidesToShow: 2,
       slidesToScroll: 2,
     };
+    const bookItem = [];
+    const bookRow = [];
+    if (this.props.data && this.props.data.content.length > 0) {
+      this.props.data.content.forEach((item) => {
+        bookItem.push(
+          <Link to={`/book/${item.id}`}>
+            <div className="book-item d-inline-flex">
+              <div className="book-block__container__slider--box">
+                <img
+                  className="book-block__container__slider__image-carousel "
+                  src={item.linkImage}
+                  alt="testImage"
+                />
+              </div>
+              <div className="book-block__container__slider__info p-3">
+                <p>{item.name}</p>
+                <p className="price">{item.price}</p>
+              </div>
+            </div>
+          </Link>
+        )
+      });
+      if (bookItem.length > 0) {
+        for (let i = 0; i < bookItem.length; i += 1) {
+          if (bookItem[i + 1]) {
+            bookRow.push(
+              <div>
+                {bookItem[i]}
+                {bookItem[i + 1]}
+              </div>
+            )
+            i += 1;
+          } else {
+            bookRow.push(
+              <div>
+                {bookItem[i]}
+              </div>
+            )
+          }
+        }
+      }
+    }
     return (
       <div className="book-block">
         <div className="book-block__header d-flex align-items-center pl-3">{this.props.titleBlock}</div>
         <div className="book-block__container d-flex">
           <div className="book-block__container__slider  pb-0">
             <Slider {...settings}>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
-              <div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-                <div className="book-item d-inline-flex">
-                  <div className="book-block__container__slider--box">
-                    <div className="badge-number">5</div>
-                    <img
-                      className="book-block__container__slider__image-carousel "
-                      src={testImage}
-                      alt="testImage"
-                    />
-                  </div>
-                  <div className="book-block__container__slider__info p-3">
-                    <p>sdfgasdgasdfgfdgdádasdasdasdasdasdasdasdasdasdasdadgdfgdfgdfgdfgsdasdasdasdádasdasdads Duong</p>
-                    <p className="price">169.000</p>
-                  </div>                </div>
-              </div>
+              {bookRow}
             </Slider>
           </div>
           <div>

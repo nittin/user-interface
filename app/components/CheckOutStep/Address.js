@@ -47,65 +47,44 @@ const style1 = {
     boxShadow: state.isFocused ? '0 0 0 2px #3f51b5' : '#000000',
   }),
 };
-const suggestions = [
-  { label: 'Afghanistan' },
-  { label: 'Aland Islands' },
-  { label: 'Albania' },
-  { label: 'Algeria' },
-  { label: 'American Samoa' },
-  { label: 'Andorra' },
-  { label: 'Angola' },
-  { label: 'Anguilla' },
-  { label: 'Antarctica' },
-  { label: 'Antigua and Barbuda' },
-  { label: 'Argentina' },
-  { label: 'Armenia' },
-  { label: 'Aruba' },
-  { label: 'Australia' },
-  { label: 'Austria' },
-  { label: 'Azerbaijan' },
-  { label: 'Bahamas' },
-  { label: 'Bahrain' },
-  { label: 'Bangladesh' },
-  { label: 'Barbados' },
-  { label: 'Belarus' },
-  { label: 'Belgium' },
-  { label: 'Belize' },
-  { label: 'Benin' },
-  { label: 'Bermuda' },
-  { label: 'Bhutan' },
-  { label: 'Bolivia, Plurinational State of' },
-  { label: 'Bonaire, Sint Eustatius and Saba' },
-  { label: 'Bosnia and Herzegovina' },
-  { label: 'Botswana' },
-  { label: 'Bouvet Island' },
-  { label: 'Brazil' },
-  { label: 'British Indian Ocean Territory' },
-  { label: 'Brunei Darussalam' },
-].map(suggestion => ({
-  value: suggestion.label,
-  label: suggestion.label,
-}));
 
 class Address extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addAddress: false,
-      value: 0,
-      value: 0,
+      customerName: '',
+      phoneNumber: '',
+      addressNote: '',
       city: null,
       district: null,
       ward: null,
+      created: false,
+      addAddress: false,
+      value: 0,
+      isValid: false,
     };
   }
 
   handleChangeOption = (name, selectedOption) => {
     this.setState({ [name]: selectedOption });
+    this.props.onChangeInput(name, selectedOption);
+    if (name === 'city') {
+      this.props.getListDistrict();
+    }
+    if (name === 'district') {
+      this.props.getListWard();
+    }
   };
 
-  handleChange = (event, value) => {
-    this.setState({ value });
+  handleChange = name => event => {
+    if (name === 'phoneNumber') {
+      const re = /^[0-9\b]+$/;
+      if (event.target.value === '' || re.test(event.target.value)) {
+        this.setState({ phoneNumber: event.target.value });
+      }
+    } else {
+      this.setState({ [name]: event.target.value });
+    }
   };
 
   showAddAddress = () => {
@@ -114,9 +93,34 @@ class Address extends React.Component {
     });
   };
 
+  createNewAddress = () => {
+    this.setState({
+      addAddress: !this.state.addAddress,
+      created: true,
+    });
+  };
+
   render() {
-    const { classes, theme } = this.props;
-    const { value } = this.state;
+    const { classes, listCity, listDistrict, listWard, city, district, ward } = this.props;
+    const cities = listCity.map(city => ({
+      value: city.cityName,
+      label: city.cityName,
+    }));
+    let districts = [];
+    if (listDistrict) {
+      districts = listDistrict.map(item => ({
+        value: item.districtName,
+        label: item.districtName,
+      }));
+    }
+
+    let wards = [];
+    if (listWard) {
+      wards = listWard.map(item => ({
+        value: item.wardName,
+        label: item.wardName,
+      }));
+    }
     return (
       <div className="address">
         <div>Vui lòng chọn địa chỉ giao hàng có sẵn bên dưới</div>
@@ -124,17 +128,31 @@ class Address extends React.Component {
           <Paper className={classes.root}>
             <Typography className={classes.textName}>Nguyễn Thị Ngọc Dương</Typography>
             <Typography>Địa chỉ: Khu phố 6 phường Linh Trung quận Thủ Đức thành phố Hồ Chí Minh</Typography>
-            <Typography>Số điện thoại</Typography>
-            <Button variant="contained" color="primary" className="mt-3 mr-2">Giao đến địa chỉ này</Button>
-            <Button className="mt-3">Chỉnh sửa</Button>
+            <Typography>Số điện thoại: </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              className="mt-3 mr-2"
+              onClick={this.props.handleNext}
+            >
+              Giao đến địa chỉ này
+                </Button>
           </Paper>
-          <Paper className={classes.root}>
-            <Typography className={classes.textName}>Nguyễn Thị Ngọc Dương</Typography>
-            <Typography>Địa chỉ</Typography>
-            <Typography>Số điện thoại</Typography>
-            <Button variant="contained" color="primary" className="mt-3 mr-2">Giao đến địa chỉ này</Button>
-            <Button className="mt-3">Chỉnh sửa</Button>
-          </Paper>
+          {this.state.created ?
+            <Paper className={classes.root}>
+              <Typography className={classes.textName}>{this.state.customerName}</Typography>
+              <Typography>{`Địa chỉ: ${this.state.addressNote}, ${this.state.ward.value}, ${this.state.district.value}, ${this.state.city.value}`}</Typography>
+              <Typography>{`Số điện thoại: ${this.state.phoneNumber}`}</Typography>
+              <Button
+                variant="contained"
+                color="primary"
+                className="mt-3 mr-2"
+                onClick={this.props.handleNext}
+              >
+                Giao đến địa chỉ này
+                  </Button>
+            </Paper>
+            : ''}
         </div>
         <div>
           <a href="#" onClick={this.showAddAddress} >
@@ -149,6 +167,29 @@ class Address extends React.Component {
                 label="Họ và tên"
                 helperText=""
                 fullWidth
+                margin="normal"
+                variant="outlined"
+                onChange={this.handleChange('customerName')}
+                InputLabelProps={{
+                  classes: {
+                    root: classes.cssLabel,
+                  },
+                }}
+                InputProps={{
+                  classes: {
+                    input: classes.inputPadding,
+                  },
+                }}
+              />
+              <TextField
+                id="outlined-full-width"
+                label="Mật khẩu"
+                value={this.state.password}
+                onChange={this.handleChange('password')}
+                type="password"
+                helperText=""
+                fullWidth
+                hidden={this.props.addNew}
                 margin="normal"
                 variant="outlined"
                 InputLabelProps={{
@@ -167,8 +208,10 @@ class Address extends React.Component {
                 label="Số điện thoại"
                 helperText=""
                 fullWidth
+                value={this.state.phoneNumber}
                 margin="normal"
                 variant="outlined"
+                onChange={this.handleChange('phoneNumber')}
                 InputLabelProps={{
                   classes: {
                     root: classes.cssLabel,
@@ -185,7 +228,7 @@ class Address extends React.Component {
                   value={this.state.selectedOption}
                   className={classes.select}
                   onChange={e => this.handleChangeOption('city', e)}
-                  options={suggestions}
+                  options={cities}
                   isClearable
                   placeholder="Tỉnh/Thành phố"
                   styles={style1}
@@ -194,7 +237,8 @@ class Address extends React.Component {
                   value={this.state.selectedOption}
                   className={classes.select}
                   onChange={e => this.handleChangeOption('district', e)}
-                  options={suggestions}
+                  options={districts}
+                  isDisabled={!this.state.city}
                   isClearable
                   placeholder="Quận/Huyện"
                   styles={style1}
@@ -203,7 +247,8 @@ class Address extends React.Component {
                   value={this.state.selectedOption}
                   className={classes.select}
                   onChange={e => this.handleChangeOption('ward', e)}
-                  options={suggestions}
+                  options={wards}
+                  isDisabled={!this.state.district}
                   isClearable
                   placeholder="Phường/Trị trấn"
                   styles={style1}
@@ -218,6 +263,7 @@ class Address extends React.Component {
                 variant="outlined"
                 rows="5"
                 multiline
+                onChange={this.handleChange('addressNote')}
                 InputLabelProps={{
                   classes: {
                     root: classes.cssLabel,
@@ -230,7 +276,25 @@ class Address extends React.Component {
                 }}
               />
               <Button className="mt-3 mr-2" onClick={this.showAddAddress}>Hủy bỏ</Button>
-              <Button variant="contained" color="primary" className="mt-3">Thêm địa chỉ</Button>
+              {this.props.addNew ? (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="mt-3"
+                  onClick={this.createNewAddress}
+                >
+                  Thêm địa chỉ
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="mt-3"
+                  type="submit"
+                >
+                  Đăng kí
+                </Button>
+              )}
             </form>
           </div>
         )}
@@ -239,5 +303,7 @@ class Address extends React.Component {
   }
 }
 
-Address.propTypes = {};
+Address.propTypes = {
+  addNew: PropTypes.bool,
+};
 export default withStyles(styles, { withTheme: true })(Address);

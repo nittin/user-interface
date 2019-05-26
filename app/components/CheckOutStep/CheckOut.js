@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import facebook from 'images/facebook.png';
 import gmail from 'images/gmail.png';
 import { Link } from 'react-router-dom';
+import { withCookies } from 'react-cookie';
 
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -18,7 +19,6 @@ import OrderAddress from '../Common/OrderAddress';
 
 const styles = theme => ({
   root: {
-    width: '90%',
   },
   button: {
     marginRight: 10,
@@ -45,6 +45,10 @@ class CheckOut extends React.Component {
       activeStep: 0,
       completed: new Set(),
     };
+  }
+
+  componentDidMount() {
+    this.props.getListCity();
   }
 
   handleNext = () => {
@@ -89,7 +93,6 @@ class CheckOut extends React.Component {
     const { classes } = this.props;
     const steps = getSteps();
     const { activeStep } = this.state;
-
     return (
       <div className="check-out">
         <Stepper activeStep={activeStep} className="mb-3">
@@ -123,7 +126,7 @@ class CheckOut extends React.Component {
                     <Button className="check-out__tab-content__social"><img src={gmail} alt="gmail" /></Button>
                   </div>
                   <div className="d-flex justify-content-center mb-5">
-                    <Login />
+                    <Login handleNext={this.handleNext} {...this.props}/>
                     <Order editButton />
                   </div>
                 </div>
@@ -132,28 +135,36 @@ class CheckOut extends React.Component {
                 <div className="check-out__tab-content">
                   <Typography className="check-out__tab-content"></Typography>
                   <div className="d-flex justify-content-center mb-5">
-                    <Address />
+                    <Address
+                      {...this.props}
+                      handleNext={this.handleNext}
+                      addNew
+                    />
                   </div>
                 </div>
               )}
               {activeStep === 2 && (
                 <div className="check-out__tab-content">
                   <Typography className="check-out__tab-content"></Typography>
-                  <div className="d-flex mb-5">
+                  <div className="d-flex justify-content-center mb-5">
                     <OrderAddress />
                     <Order />
                   </div>
                 </div>
               )}
               <div className="d-flex flex-row-reverse mb-5">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  onClick={this.handleNext}
-                >
-                  {activeStep === steps.length - 1 ? 'Đặt hàng' : 'Tiếp theo'}
-                </Button>
+                {activeStep === steps.length - 1 ?
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.handleNext}
+                  >
+                    Đặt hàng
+                    </Button>
+                  : ''
+                }
+
               </div>
             </div>)
           }
@@ -164,4 +175,4 @@ class CheckOut extends React.Component {
 }
 
 CheckOut.propTypes = {};
-export default withStyles(styles)(CheckOut);
+export default withCookies(withStyles(styles)(CheckOut));

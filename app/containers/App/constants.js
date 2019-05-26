@@ -12,3 +12,13 @@
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+
+// get all category
+export const GET_ALL_CATEGORY = 'app/Home/GET_ALL_CATEGORY';
+export const GET_ALL_CATEGORY_SUCCESS = 'app/Home/GET_ALL_CATEGORY_SUCCESS';
+//get all author
+export const GET_ALL_AUTHOR = 'app/Home/GET_ALL_AUTHOR';
+export const GET_ALL_AUTHOR_SUCCESS = 'app/Home/GET_ALL_AUTHOR_SUCCESS';
+//get all publisher
+export const GET_ALL_PUBLISHER = 'app/Home/GET_ALL_PUBLISHER';
+export const GET_ALL_PUBLISHER_SUCCESS = 'app/Home/GET_ALL_PUBLISHER_SUCCESS';

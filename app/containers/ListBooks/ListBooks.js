@@ -33,9 +33,6 @@ class ListBooks extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getAllCategory();
-    this.props.getAllAuthor();
-    this.props.getAllPublisher();
     if (this.props.match.params.options === 'bookNew') {
       this.props.onChangeSort('desc', 'id');
       this.props.onChangePage(0);
@@ -174,6 +171,7 @@ class ListBooks extends React.Component {
           </div>
         </div>
         <TableListBook
+          {...this.props}
           listBook={listBook}
           location={this.props.location}
           onChangePage={this.props.onChangePage}
@@ -205,8 +203,8 @@ export function mapDispatchToProps(dispatch) {
     onChangeSort: (sortType, sortField) => dispatch(actions.onChangeSort(sortType, sortField)),
     onChangePage: page => {
       dispatch(actions.onChangePage(page));
-      dispatch(actions.getBookByName());
     },
+    onChangeSearchKey: searchKey => dispatch(actions.onChangeSearchKey(searchKey)),
     getAllCategory: () => dispatch(actions.getAllCategory()),
     getAllAuthor: () => dispatch(actions.getAllAuthor()),
     getAllPublisher: () => dispatch(actions.getAllPublisher()),
@@ -214,5 +212,6 @@ export function mapDispatchToProps(dispatch) {
     getBookByName: () => dispatch(actions.getBookByName()),
     getBookByAuthor: () => dispatch(actions.getBookByAuthor()),
     getBookByPublisher: () => dispatch(actions.getBookByPublisher()),
+    getBookByCategory: () => dispatch(actions.getBookByCategory()),
   };
 }

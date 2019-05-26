@@ -21,3 +21,7 @@ export const getApi = (resource, params, options = {}) => {
   const url = `${resource}?${queryString}`;
   return requestApi(url, 'GET', {}, options);
 };
+export const postApi = (resource, body, options = {}) => {
+  const url = `${resource}`;
+  return requestApi(url, 'POST', body, options);
+};

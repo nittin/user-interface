@@ -37,7 +37,7 @@ export class Detail extends React.Component {
     const { bookDetail, loading, error } = this.props;
     return (
       <div>
-        <BookDetail loading={loading} bookDetail={bookDetail} error={error} />
+        <BookDetail {...this.props} />
       </div>
     );
   }

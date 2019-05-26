@@ -10,6 +10,7 @@ import * as constants from './constants';
 export const initialState = fromJS({
   loading: false,
   error: null,
+  searchKey: null,
   listCategory: null,
   listAuthor: null,
   listPublisher: null,
@@ -30,6 +31,8 @@ function listBooksReducer(state = initialState, action) {
         .set('sortField', action.sortField);
     case constants.CHANGE_PAGE:
       return state.set('page', action.page);
+    case constants.CHANGE_SEARCH_KEY:
+      return state.set('searchKey', action.searchKey);
     case constants.GET_ALL_CATEGORY:
       return state
         .set('loading', { ...state.get('loading'), category: true })
@@ -59,14 +62,14 @@ function listBooksReducer(state = initialState, action) {
     case constants.GET_BOOK_BY_CATEGORY:
     case constants.GET_BOOK_BY_PUBLISHER:
       return state
-        .set('loading', { ...state.get('loading'), book: true })
+        .set('loading', { ...state.get('loading'), table: true })
         .set('listBook', null);
     case constants.GET_BOOK_BY_NAME_SUCCESS:
     case constants.GET_BOOK_BY_AUTHOR_SUCCESS:
     case constants.GET_BOOK_BY_CATEGORY_SUCCESS:
     case constants.GET_BOOK_BY_PUBLISHER_SUCCESS:
       return state
-        .set('loading', { ...state.get('loading'), book: false })
+        .set('loading', { ...state.get('loading'), table: false })
         .set('listBook', action.data);
     default:
       return state;

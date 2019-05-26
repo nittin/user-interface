@@ -1,18 +1,17 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
+// import React from 'react';
+// import PropTypes from 'prop-types';
+// import { createStructuredSelector } from 'reselect';
+// import { connect } from 'react-redux';
+// import { compose } from 'redux';
 
-import React from 'react';
-import App from './App';
+// import injectSaga from 'utils/injectSaga';
+// import injectReducer from 'utils/injectReducer';
+// import { makeSelector } from './selectors';
+// import reducer from './reducer';
+// import saga from './saga';
+// import App from './App';
+// import { mapDispatchToProps } from './App';
 
-export default function render() {
-  return (
-    <div>
-      <App />
-    </div>
-  );
-}
+// /* eslint-disable react/prefer-stateless-function */
+
+export { default } from './App';

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import { Link } from 'react-router-dom';
 
 import './styles.scss';
 const styles = theme => ({
@@ -41,7 +42,7 @@ class Login extends React.Component {
               color="primary"
               hidden={!this.props.editButton}
             >
-              Chỉnh sửa
+              <Link to="/check-out/cart"> Chỉnh sửa </Link>
             </Button>
           </div>
           <div className="order__content">

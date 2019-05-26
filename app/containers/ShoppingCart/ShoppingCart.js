@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Quantity from 'components/Common/Quantity';
 import { Delete } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -86,7 +87,11 @@ class ShoppingCart extends React.Component {
                 </div>
               </div>
             </Paper>
-            <Button fullWidth className="order p-2 mt-3">Đặt hàng</Button>
+            <Button fullWidth className="order p-2 mt-3">
+              <Link to="/check-out/shopping">
+                Đặt hàng
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

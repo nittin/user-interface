@@ -17,6 +17,8 @@ const selectCheckOutDomain = state => state.get('checkOut', initialState);
 
 const makeSelectCheckOut = () =>
   createSelector(selectCheckOutDomain, substate => substate.toJS());
+const makeSelector = props =>
+  createSelector(selectCheckOutDomain, substate => substate.get(props));
 
 export default makeSelectCheckOut;
-export { selectCheckOutDomain };
+export { selectCheckOutDomain, makeSelector };

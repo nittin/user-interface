@@ -92,7 +92,7 @@ class OrderAddress extends React.Component {
         <div className="order-address__paper">
           <Paper className={classes.root}>
             <Typography className={classes.textName}>Nguyễn Thị Ngọc Dương</Typography>
-            <Typography>Địa chỉ: Khu phố 6 phường Linh Trung quận Thủ Đức thành phố Hồ Chí Minh</Typography>
+            <Typography>Địa chỉ: Khu phố 6 phường Linh Trung quận Thủ Đức thành phố Hồ Chí Minhvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv</Typography>
             <Typography>Số điện thoại</Typography>
           </Paper>
         </div>

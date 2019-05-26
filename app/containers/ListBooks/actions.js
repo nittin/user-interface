@@ -31,6 +31,12 @@ export function onChangePage(page) {
     page,
   };
 }
+export function onChangeSearchKey(searchKey) {
+  return {
+    type: constant.CHANGE_SEARCH_KEY,
+    searchKey,
+  };
+}
 export function getAllCategory() {
   return {
     type: constant.GET_ALL_CATEGORY,
@@ -88,7 +94,7 @@ export function getBookByAuthor() {
 }
 export function getBookByPublisherSuccess(data) {
   return {
-    type: constant.GET_ALL_PUBLISHER_SUCCESS,
+    type: constant.GET_BOOK_BY_PUBLISHER_SUCCESS,
     data,
   };
 }
