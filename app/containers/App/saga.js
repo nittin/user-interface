@@ -18,6 +18,7 @@ export function* getListCategory() {
   } catch (e) {
     console.log(e);
   }
+
 }
 export function* getListAuthor() {
   const resource = 'author/get-all';
