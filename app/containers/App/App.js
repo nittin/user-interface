@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch as Router, Route } from 'react-router-dom';
+import { Switch as Router, Route, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { withCookies } from 'react-cookie';
 import { createStructuredSelector } from 'reselect';
@@ -63,21 +63,21 @@ export class App extends React.Component {
             <Route path="/list-books/:options" component={ListBooks} />
             <Route
               path="/book/:id"
-              render={props =>
+              render={props => (
                 <Detail {...props} cookies={this.props.cookies} />
-              }
+              )}
             />
             <Route
               path="/check-out/cart"
-              render={props =>
+              render={props => (
                 <ShoppingCart {...props} cookies={this.props.cookies} />
-              }
+              )}
             />
             <Route
               path="/check-out/shopping"
-              render={props =>
+              render={props => (
                 <CheckOut {...props} cookies={this.props.cookies} />
-              }
+              )}
             />
             <Route component={NotFoundPage} />
           </Router>
@@ -118,8 +118,9 @@ const withSaga = injectSaga({ key: 'app', saga });
 //   mapDispatchToProps,
 // )(App);
 export default compose(
-  withReducer,
-  withSaga,
+  // withReducer,
+  withRouter,
   withConnect,
+  withSaga,
   withCookies,
 )(App);

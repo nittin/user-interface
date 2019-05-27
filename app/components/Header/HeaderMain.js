@@ -13,13 +13,13 @@ import Dialog from '@material-ui/core/Dialog';
 import Typography from '@material-ui/core/Typography';
 import DialogContent from '@material-ui/core/DialogContent';
 import './styles.scss';
-import LoginPage from 'containers/App/LoginPage';
+// import LoginPage from 'containers/App/LoginPage';
 const styles = {
   container: {
     display: 'flex',
     flexWrap: 'wrap',
   },
-  //style for font size
+  // style for font size
   resize: {
     fontSize: 14,
     marginTop: 0,
@@ -30,7 +30,7 @@ class HeaderMain extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchKey: "",
+      searchKey: '',
       search: 'bookName',
       open: false,
     };
@@ -47,7 +47,7 @@ class HeaderMain extends React.Component {
     this.setState({ [name]: event.target.value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     this.props.history.push({
       search: `${this.state.searchKey}`,
@@ -83,7 +83,9 @@ class HeaderMain extends React.Component {
     return (
       <div className="header-main mb-3">
         <div className="row d-flex align-items-center">
-          <div className="col-lg-3"><Link to="/">DUONG SOO KIM</Link></div>
+          <div className="col-lg-3">
+            <Link to="/">DUONG SOO KIM</Link>
+          </div>
           <div className="col-lg-6">
             <form onSubmit={this.handleSubmit}>
               <div className="d-flex header-main__search">
@@ -129,14 +131,13 @@ class HeaderMain extends React.Component {
           </div>
           <div className="col-lg-3 d-flex justify-content-center">
             <div className="d-flex align-items-center p-2">
-              <Link className="link-cart" to="/check-out/cart"><ShoppingCart /></Link>
+              <Link className="link-cart" to="/check-out/cart">
+                <ShoppingCart />
+              </Link>
               <div className="badge-number">5</div>
             </div>
             <div className="shop-bag d-flex justify-content-center p-2">
-              <button
-                onClick={this.handleClose}
-              >
-                ĐĂNG NHẬP</button>
+              <button onClick={this.handleClose}>ĐĂNG NHẬP</button>
             </div>
           </div>
         </div>
@@ -146,17 +147,25 @@ class HeaderMain extends React.Component {
           aria-labelledby="simple-dialog-title"
           className="dialog"
         >
-          <DialogTitle id="simple-dialog-title">ĐĂNG NHẬP TÀI KHOẢN</DialogTitle>
+          <DialogTitle id="simple-dialog-title">
+            ĐĂNG NHẬP TÀI KHOẢN
+          </DialogTitle>
           <DialogContent>
             <div className="check-out__tab-content">
-              <Typography className="check-out__tab-content">Thanh toán đơn hàng chỉ với một bước với:</Typography>
+              <Typography className="check-out__tab-content">
+                Thanh toán đơn hàng chỉ với một bước với:
+              </Typography>
               <div className="d-flex justify-content-center p-2">
-                <Button className="check-out__tab-content__social"><img src={facebook} alt="facebook" /></Button>
-                <Button className="check-out__tab-content__social"><img src={gmail} alt="gmail" /></Button>
+                <Button className="check-out__tab-content__social">
+                  <img src={facebook} alt="facebook" />
+                </Button>
+                <Button className="check-out__tab-content__social">
+                  <img src={gmail} alt="gmail" />
+                </Button>
               </div>
               <Typography className="check-out__tab-content">Hoặc</Typography>
               <div className="d-flex justify-content-center mb-5">
-                <LoginPage />
+                {/* <LoginPage /> */}
               </div>
             </div>
           </DialogContent>

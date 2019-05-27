@@ -10,6 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { withRouter } from 'react-router-dom';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { makeSelector } from './selectors';
@@ -48,4 +49,5 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
+  withRouter,
 )(ListBooks);
