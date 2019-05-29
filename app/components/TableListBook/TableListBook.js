@@ -14,6 +14,7 @@ export default class TableListBook extends React.Component {
     this.state = {
       activePage: 1,
     };
+    const a = "";
   }
 
   componentDidMount() {
